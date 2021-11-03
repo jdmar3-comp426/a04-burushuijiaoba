@@ -12,7 +12,7 @@ app.use(express.json());
 // Set server port
 
 // Start server
-var HTTP_PORT = 3001;
+var HTTP_PORT = 5000;
 app.listen(HTTP_PORT, () => {
     console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
 });
@@ -38,8 +38,8 @@ app.get("/app/users", (req, res) => {
 
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
 app.get("/app/user/:id",(req,res)=>{
-	const stmt = db.prepare("Select * from userinfo where id = ?");
-	const info = stmt.run(req.params.id);
+	const id = req.params.id;
+	const stmt = db.prepare("Select * from userinfo where id = ?").run(id);
 	res.status(200).json(stmt);
 })
 
