@@ -23,6 +23,10 @@ if (row === undefined) {
     console.log('Your database has been initialized with a new table and two entries containing a username and password.');
 } else {
 // Since the database already exists, echo that to the console.
+    const sqlInit = `
+            DELETE FROM userinfo where id > 2
+        `;
+    db.exec(sqlInit);
     console.log('Database exists.')
 }
 // Export all of the above as a module so that we can use it elsewhere.
